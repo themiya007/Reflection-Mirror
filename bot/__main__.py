@@ -61,11 +61,10 @@ def getHerokuDetails(h_api_key, h_app_name):
         quota_used = result["quota_used"]
         quota_remain = account_quota - quota_used
         abc += f'<b></b>\n'
-        abc += f'<b>╭─《🌐 HEROKU STATS 🌐》</b>\n'
-        abc += f'<b>│</b>\n'
-        abc += f"<b>├ 💪🏻 FULL</b>: {get_readable_time(account_quota)}\n"
-        abc += f"<b>├ 👎🏻 USED</b>: {get_readable_time(quota_used)}\n"
-        abc += f"<b>├ 👍🏻 FREE</b>: {get_readable_time(quota_remain)}\n"
+        abc += f'<b> HEROKU STATS</b>\n'
+        abc += f"<b>FULL</b>: {get_readable_time(account_quota)}\n"
+        abc += f"<b>USED</b>: {get_readable_time(quota_used)}\n"
+        abc += f"<b>FREE</b>: {get_readable_time(quota_remain)}\n"
         # App Quota
         AppQuotaUsed = 0
         OtherAppsUsage = 0
@@ -85,10 +84,10 @@ def getHerokuDetails(h_api_key, h_app_name):
                     LOGGER.error(t)
                     pass
         LOGGER.info(f"This App: {str(app.name)}")
-        abc += f"<b>├ 🎃 APP USAGE:</b> {get_readable_time(AppQuotaUsed)}\n"
-        abc += f"<b>├ 🗑️ OTHER APP:</b> {get_readable_time(OtherAppsUsage)}\n"
-        abc += f'<b>│</b>\n'
-        abc += f'<b>╰─《 ☣️ @dipeshmirror ☣️ 》</b>'
+        abc += f"<b>APP USAGE:</b> {get_readable_time(AppQuotaUsed)}\n"
+        abc += f"<b>OTHER APP:</b> {get_readable_time(OtherAppsUsage)}\n"
+        abc += f'<b></b>\n'
+        abc += f'<b>Made By Themiya</b>'
         return abc
     except Exception as g:
         LOGGER.error(g)
@@ -96,13 +95,13 @@ def getHerokuDetails(h_api_key, h_app_name):
 
 
 
-IMAGE_X = "http://telegra.ph/REFLECTION-07-18"
+IMAGE_X = "https://scontent-sin6-4.xx.fbcdn.net/v/t1.6435-9/33964536_1635353863250625_8727610829530202112_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=e3f864&_nc_ohc=2CkXu3Xm9p0AX-E1s1j&_nc_ht=scontent-sin6-4.xx&oh=00_AT_DFQiJn_K1SmCjyc2bJbH-pzcXUOPUPHiUjJy3lRalvA&oe=631AA594"
 
 now=datetime.now(pytz.timezone(f'{TIMEZONE}'))
 
 def progress_bar(percentage):
-    p_used = '⬢'
-    p_total = '⬡'
+    p_used = '●'
+    p_total = '○'
     if isinstance(percentage, str):
         return 'NaN'
     try:
@@ -139,27 +138,27 @@ def stats(update, context):
     mem_t = get_readable_file_size(memory.total)
     mem_a = get_readable_file_size(memory.available)
     mem_u = get_readable_file_size(memory.used)
-    stats = f'<b>╭─《🌐 BOT STATISTICS 🌐》</b>\n' \
-            f'<b>│</b>\n' \
-            f'<b>├ 🛠 𝙲𝙾𝙼𝙼𝙸𝚃 𝙳𝙰𝚃𝙴:</b> {last_commit}\n'\
-            f'<b>├ 🟢 𝙾𝙽𝙻𝙸𝙽𝙴 𝚃𝙸𝙼𝙴:</b> {currentTime}\n'\
-            f'<b>├ 🟢 Sᴛᴀʀᴛᴇᴅ Aᴛ:</b> {current}\n'\
-            f'<b>├ ☠️ 𝙾𝚂 𝚄𝙿𝚃𝙸𝙼𝙴:</b> {osUptime}\n'\
-            f'<b>├ 💾 𝙳𝙸𝚂𝙺 𝚂𝙿𝙰𝙲𝙴:</b> {total}\n'\
-            f'<b>├ 📀 𝙳𝙸𝚂𝙺 𝚂𝙿𝙰𝙲𝙴 𝚄𝚂𝙴𝙳:</b> {used}\n'\
-            f'<b>├ 💿 𝙳𝙸𝚂𝙺 𝚂𝙿𝙰𝙲𝙴 𝙵𝚁𝙴𝙴:</b> {free}\n'\
-            f'<b>├ 🔺 𝚄𝙿𝙻𝙾𝙰𝙳 𝙳𝙰𝚃𝙰:</b> {sent}\n'\
-            f'<b>├ 🔻 𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳 𝙳𝙰𝚃𝙰:</b> {recv}\n'\
-            f'<b>├ 🖥️ 𝙲𝙿𝚄 𝚄𝚂𝙰𝙶𝙴:</b> {progress_bar(cpuUsage)} {cpuUsage}%\n' \
-            f'<b>├ 🎮 𝚁𝙰𝙼:</b> {progress_bar(mem_p)} {mem_p}%\n' \
-            f'<b>├ 👸 𝙳𝙸𝚂𝙺 𝚄𝚂𝙴𝙳:</b> {progress_bar(disk)} {disk}%\n\n' \
-            f'<b>├ 💽 𝙿𝙷𝚈𝚂𝙸𝙲𝙰𝙻 𝙲𝙾𝚁𝙴𝚂:</b> {p_core}\n'\
-            f'<b>├ 🍥 𝚃𝙾𝚃𝙰𝙻 𝙲𝙾𝚁𝙴𝚂:</b> {t_core}\n'\
-            f'<b>├ ✳ 𝚂𝚆𝙰𝙿:</b> {swap_t}\n'\
-            f'<b>├ 👸 𝚂𝚆𝙰𝙿 𝚄𝚂𝙴𝙳:</b> {swap_p}%\n'\
-            f'<b>├ ☁ 𝚃𝙾𝚃𝙰𝙻 𝙾𝙵 𝙼𝙴𝙼𝙾𝚁𝚈:</b> {mem_t}\n'\
-            f'<b>├ 💃 𝙵𝚁𝙴𝙴 𝙾𝙵 𝙼𝙴𝙼𝙾𝚁𝚈:</b> {mem_a}\n'\
-            f'<b>╰ 👰 𝚄𝚂𝙰𝙶𝙴 𝙾𝙵 𝙼𝙴𝙼𝙾𝚁𝚈:</b> {mem_u}\n'
+    stats = f'<b> KRATOS BOT STATISTICS</b>\n' \
+            f'<b></b>\n' \
+            f'<b>𝙲𝙾𝙼𝙼𝙸𝚃 𝙳𝙰𝚃𝙴:</b> {last_commit}\n'\
+            f'<b>𝙾𝙽𝙻𝙸𝙽𝙴 𝚃𝙸𝙼𝙴:</b> {currentTime}\n'\
+            f'<b>Sᴛᴀʀᴛᴇᴅ Aᴛ:</b> {current}\n'\
+            f'<b>𝙾𝚂 𝚄𝙿𝚃𝙸𝙼𝙴:</b> {osUptime}\n'\
+            f'<b>𝙳𝙸𝚂𝙺 𝚂𝙿𝙰𝙲𝙴:</b> {total}\n'\
+            f'<b>𝙳𝙸𝚂𝙺 𝚂𝙿𝙰𝙲𝙴 𝚄𝚂𝙴𝙳:</b> {used}\n'\
+            f'<b>𝙳𝙸𝚂𝙺 𝚂𝙿𝙰𝙲𝙴 𝙵𝚁𝙴𝙴:</b> {free}\n'\
+            f'<b>𝚄𝙿𝙻𝙾𝙰𝙳 𝙳𝙰𝚃𝙰:</b> {sent}\n'\
+            f'<b>𝙳𝙾𝚆𝙽𝙻𝙾𝙰𝙳 𝙳𝙰𝚃𝙰:</b> {recv}\n'\
+            f'<b>𝙲𝙿𝚄 𝚄𝚂𝙰𝙶𝙴:</b> {progress_bar(cpuUsage)} {cpuUsage}%\n' \
+            f'<b>𝚁𝙰𝙼:</b> {progress_bar(mem_p)} {mem_p}%\n' \
+            f'<b>𝙳𝙸𝚂𝙺 𝚄𝚂𝙴𝙳:</b> {progress_bar(disk)} {disk}%\n\n' \
+            f'<b>𝙿𝙷𝚈𝚂𝙸𝙲𝙰𝙻 𝙲𝙾𝚁𝙴𝚂:</b> {p_core}\n'\
+            f'<b>𝚃𝙾𝚃𝙰𝙻 𝙲𝙾𝚁𝙴𝚂:</b> {t_core}\n'\
+            f'<b>𝚂𝚆𝙰𝙿:</b> {swap_t}\n'\
+            f'<b>𝚂𝚆𝙰𝙿 𝚄𝚂𝙴𝙳:</b> {swap_p}%\n'\
+            f'<b>𝚃𝙾𝚃𝙰𝙻 𝙾𝙵 𝙼𝙴𝙼𝙾𝚁𝚈:</b> {mem_t}\n'\
+            f'<b>𝙵𝚁𝙴𝙴 𝙾𝙵 𝙼𝙴𝙼𝙾𝚁𝚈:</b> {mem_a}\n'\
+            f'<b>𝚄𝚂𝙰𝙶𝙴 𝙾𝙵 𝙼𝙴𝙼𝙾𝚁𝚈:</b> {mem_u}\n'
     heroku = getHerokuDetails(HEROKU_API_KEY, HEROKU_APP_NAME)
     if heroku: stats += heroku 
            
@@ -168,8 +167,7 @@ def stats(update, context):
 
 def start(update, context):
     buttons = ButtonMaker()
-    buttons.buildbutton("😎 Master", "https://t.me/toxytech")
-    buttons.buildbutton("🙋 Mirror Group", "https://t.me/dipeshmirror")
+    buttons.buildbutton("Creator", "Themiya")
     buttons.buildbutton("🇮🇳 Support Group", "https://t.me/mirrorsociety")
     reply_markup = InlineKeyboardMarkup(buttons.build_menu(2))
     if CustomFilters.authorized_user(update) or CustomFilters.authorized_chat(update):
@@ -183,7 +181,7 @@ Type /{BotCommands.HelpCommand} to get a list of available commands
 
 
 def restart(update, context):
-    restart_message = sendMessage("Restarting, Please wait!..👻👻", context.bot, update.message)
+    restart_message = sendMessage("Restarting, Please wait!..", context.bot, update.message)
     if Interval:
         Interval[0].cancel()
         Interval.clear()
@@ -199,9 +197,9 @@ def restart(update, context):
 
 def ping(update, context):
     start_time = int(round(time() * 1000))
-    reply = sendMessage("Starting_Ping ⛔", context.bot, update.message)
+    reply = sendMessage("Starting_Ping", context.bot, update.message)
     end_time = int(round(time() * 1000))
-    editMessage(f'{end_time - start_time} ms 🔥', reply)
+    editMessage(f'{end_time - start_time} ms ', reply)
 
 
 def log(update, context):
@@ -209,12 +207,12 @@ def log(update, context):
 
 
 help_string = '''
-<b><a href='https://t.me/dipeshmirror'>ReflectionMirror</a></b> - The Ultimate Telegram MIrror-Leech Bot to Upload Your File & Link in Google Drive & Telegram
+The Ultimate Telegram MIrror-Leech Bot to Upload Your File & Link in Google Drive & Telegram
 Choose a help category:
 '''
 
 help_string_telegraph_user = f'''
-<b><u>👤 User Commands</u></b>
+<b><u>User Commands</u></b>
 <br><br>
 • <b>/{BotCommands.HelpCommand}</b>: To get this message
 <br><br>
@@ -292,11 +290,11 @@ help_string_telegraph_user = f'''
 '''
 
 help_user = telegraph.create_page(
-    title='😄 ReflectionMirror Help 😄',
+    title='Kratos Bot Help',
     content=help_string_telegraph_user)["path"]
 
 help_string_telegraph_admin = f'''
-<b><u>🛡️ Admin Commands</u></b>
+<b><u>Admin Commands</u></b>
 <br><br>
 • <b>/{BotCommands.PingCommand}</b>: Check how long it takes to Ping the Bot
 <br><br>
@@ -316,13 +314,13 @@ help_string_telegraph_admin = f'''
 '''
 
 help_admin = telegraph.create_page(
-    title='😄 ReflectionMirror Help',
+    title='Kratos Bot Help',
     content=help_string_telegraph_admin)["path"]
 
 def bot_help(update, context):
     button = ButtonMaker()
-    button.buildbutton("👤 User", f"https://graph.org/{help_user}")
-    button.buildbutton("🛡️ Admin", f"https://graph.org/{help_admin}")
+    button.buildbutton("User", f"https://graph.org/{help_user}")
+    button.buildbutton("Admin", f"https://graph.org/{help_admin}")
     sendMarkup(help_string, context.bot, update.message, InlineKeyboardMarkup(button.build_menu(2)))
 
        
@@ -382,7 +380,7 @@ def main():
                 if ospath.isfile(".restartmsg"):
                     with open(".restartmsg") as f:
                         chat_id, msg_id = map(int, f)
-                    msg = '😎Restarted successfully❗'
+                    msg = 'Restarted successfully !'
                 else:
                     msg = 'Bot Restarted!'
                 for tag, links in data.items():
@@ -390,7 +388,7 @@ def main():
                      for index, link in enumerate(links, start=1):
                          msg += f" <a href='{link}'>{index}</a> |"
                          if len(msg.encode()) > 4000:
-                             if '😎Restarted successfully❗' in msg and cid == chat_id:
+                             if 'Restarted successfully !' in msg and cid == chat_id:
                                  bot.editMessageText(msg, chat_id, msg_id, parse_mode='HTMl', disable_web_page_preview=True)
                                  osremove(".restartmsg")
                              else:
@@ -399,7 +397,7 @@ def main():
                                  except Exception as e:
                                      LOGGER.error(e)
                              msg = ''
-                if '😎Restarted successfully❗' in msg and cid == chat_id:
+                if 'Restarted successfully !' in msg and cid == chat_id:
                      bot.editMessageText(msg, chat_id, msg_id, parse_mode='HTMl', disable_web_page_preview=True)
                      osremove(".restartmsg")
                 else:
@@ -411,7 +409,7 @@ def main():
     if ospath.isfile(".restartmsg"):
         with open(".restartmsg") as f:
             chat_id, msg_id = map(int, f)
-        bot.edit_message_text("😎Restarted successfully❗", chat_id, msg_id)
+        bot.edit_message_text("Restarted successfully !", chat_id, msg_id)
         osremove(".restartmsg")
     elif not notifier_dict and AUTHORIZED_CHATS:
         for id_ in AUTHORIZED_CHATS:
@@ -437,7 +435,7 @@ def main():
     dispatcher.add_handler(stats_handler)
     dispatcher.add_handler(log_handler)
     updater.start_polling(drop_pending_updates=IGNORE_PENDING_REQUESTS)
-    LOGGER.info("💥𝐁𝐨𝐭 𝐒𝐭𝐚𝐫𝐭𝐞𝐝❗")
+    LOGGER.info("Bot Started")
     signal(SIGINT, exit_clean_up)
 
 app.start()
