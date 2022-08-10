@@ -613,27 +613,27 @@ except KeyError:
 try:
     AUTHOR_NAME = getConfig('AUTHOR_NAME')
     if len(AUTHOR_NAME) == 0:
-        AUTHOR_NAME = 'Dipesh'
+        AUTHOR_NAME = 'Themiya'
 except KeyError:
-    AUTHOR_NAME = 'Dipesh'
+    AUTHOR_NAME = 'Themiya'
 try:
     AUTHOR_URL = getConfig('AUTHOR_URL')
     if len(AUTHOR_URL) == 0:
-        AUTHOR_URL = 'https://t.me/dipeshmirror'
+        AUTHOR_URL = 'PP'
 except KeyError:
-    AUTHOR_URL = 'https://t.me/dipeshmirror'
+    AUTHOR_URL = 'r'
 try:
     GD_INFO = getConfig('GD_INFO')
     if len(GD_INFO) == 0:
-        GD_INFO = 'Uploaded by Reflection Mirror Bot'
+        GD_INFO = 'Uploaded by Kratos Mirror Bot'
 except KeyError:
-    GD_INFO = 'Uploaded by Reflection Mirror Bot'
+    GD_INFO = 'Uploaded by Kratos Mirror Bot'
 try:
     TITLE_NAME = getConfig('TITLE_NAME')
     if len(TITLE_NAME) == 0:
-        TITLE_NAME = 'Reflection-Mirror-Search'
+        TITLE_NAME = 'Kratos-Mirror-Search'
 except KeyError:
-    TITLE_NAME = 'Reflection-Mirror-Search'
+    TITLE_NAME = 'Kratos-Mirror-Search'
 try:
     FINISHED_PROGRESS_STR = getConfig('FINISHED_PROGRESS_STR') 
     UN_FINISHED_PROGRESS_STR = getConfig('UN_FINISHED_PROGRESS_STR')
@@ -731,7 +731,7 @@ except:
 try:
     IMAGE_URL = getConfig('IMAGE_URL')
 except KeyError:
-    IMAGE_URL = 'http://telegra.ph/REFLECTION-07-18'
+    IMAGE_URL = 'https://scontent-sin6-4.xx.fbcdn.net/v/t1.6435-9/33964536_1635353863250625_8727610829530202112_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=e3f864&_nc_ohc=2CkXu3Xm9p0AX-E1s1j&_nc_ht=scontent-sin6-4.xx&oh=00_AT_DFQiJn_K1SmCjyc2bJbH-pzcXUOPUPHiUjJy3lRalvA&oe=631AA594'
 
 updater = tgUpdater(token=BOT_TOKEN, request_kwargs={'read_timeout': 20, 'connect_timeout': 15})
 bot = updater.bot
