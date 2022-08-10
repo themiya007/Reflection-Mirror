@@ -611,17 +611,18 @@ try:
 except KeyError:	
     BOT_PM = False
 try:
+   try:
     AUTHOR_NAME = getConfig('AUTHOR_NAME')
     if len(AUTHOR_NAME) == 0:
-        AUTHOR_NAME = 'Themiya'
+        AUTHOR_NAME = 'Dipesh'
 except KeyError:
-    AUTHOR_NAME = 'Themiya'
+    AUTHOR_NAME = 'Dipesh'
 try:
     AUTHOR_URL = getConfig('AUTHOR_URL')
     if len(AUTHOR_URL) == 0:
-        AUTHOR_URL = 'PP'
+        AUTHOR_URL = 'https://t.me/dipeshmirror'
 except KeyError:
-    AUTHOR_URL = 'r'
+    AUTHOR_URL = 'https://t.me/dipeshmirror'
 try:
     GD_INFO = getConfig('GD_INFO')
     if len(GD_INFO) == 0:
