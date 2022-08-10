@@ -273,9 +273,9 @@ class MirrorListener:
                         title='ReflectionMirror Source Link',
                         content=source_link,
                     )["path"]
-                        buttons.buildbutton(f"🔗 Source Link", f"https://telegra.ph/{link}")
+                        buttons.buildbutton(f" Source Link", f"https://telegra.ph/{link}")
                     else:
-                        buttons.buildbutton(f"🔗 Source Link", source_link)
+                        buttons.buildbutton(f" Source Link", source_link)
                 except Exception:
                     pass
                 if reply_to is not None:
@@ -288,17 +288,17 @@ class MirrorListener:
                                     title='WeebZone Source Link',
                                     content=source_link,
                                 )["path"]
-                                buttons.buildbutton(f"🔗 Source Link", f"https://telegra.ph/{link}")
+                                buttons.buildbutton(f" Source Link", f"https://telegra.ph/{link}")
                             else:
-                                buttons.buildbutton(f"🔗 Source Link", source_link)
+                                buttons.buildbutton(f" Source Link", source_link)
                     except Exception:
                         pass
-            msg += f'\n<b>├Total Files: </b>{folders}'
+            msg += f'\n<b>Total Files: </b>{folders}'
             if typ != 0:
-                msg += f'\n<b>├Corrupted Files: </b>{typ}'
-            msg += f'\n<b>├It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
-            msg += f'\n<b>├cc: </b>{self.tag}'
-            msg += f'\n<b>╰Thanks For using {TITLE_NAME}</b>\n'
+                msg += f'\n<b>Corrupted Files: </b>{typ}'
+            msg += f'\n<b>It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
+            msg += f'\n<b>cc: </b>{self.tag}'
+            msg += f'\n<b>Thanks For using {TITLE_NAME}</b>\n'
             if LEECH_LOG:
                 for i in LEECH_LOG:
                     indexmsg = ''
@@ -335,16 +335,16 @@ class MirrorListener:
                     uploadmsg = sendMarkup(msg + fmsg + pmwarn + logleechwarn + warnmsg, self.bot, self.message, InlineKeyboardMarkup(buttons.build_menu(2)))
                     Thread(target=auto_delete_upload_message, args=(bot, self.message, uploadmsg)).start()
         else:
-            msg += f'\n<b>├Type: </b>{typ}'
+            msg += f'\n<b>Type: </b>{typ}'
             if ospath.isdir(f'{DOWNLOAD_DIR}{self.uid}/{name}'):
-                msg += f'\n<b>├SubFolders: </b>{folders}'
-                msg += f'\n<b>├Files: </b>{files}'
-            msg += f'\n<b>├It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
-            msg += f'\n<b>├cc: </b>{self.tag}'
-            msg += f'\n<b>╰Thanks For using {TITLE_NAME}</b>\n'
+                msg += f'\n<b>SubFolders: </b>{folders}'
+                msg += f'\n<b>Files: </b>{files}'
+            msg += f'\n<b>It Tooks:</b> {get_readable_time(time() - self.message.date.timestamp())}'
+            msg += f'\n<b>cc: </b>{self.tag}'
+            msg += f'\n<b>Thanks For using {TITLE_NAME}</b>\n'
             buttons = ButtonMaker()
             link = short_url(link)
-            buttons.buildbutton("🔓 Drive Link", link)
+            buttons.buildbutton("Drive Link", link)
             LOGGER.info(f'Done Uploading {name}')
             if INDEX_URL is not None:
                 url_path = rutils.quote(f'{name}')
@@ -352,14 +352,14 @@ class MirrorListener:
                 if ospath.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{name}'):
                     share_url += '/'
                     share_url = short_url(share_url)
-                    buttons.buildbutton("🚀 Index Link", share_url)
+                    buttons.buildbutton("Index Link", share_url)
                 else:
                     share_url = short_url(share_url)
-                    buttons.buildbutton("🚀 Index Link", share_url)
+                    buttons.buildbutton(" Index Link", share_url)
                     if VIEW_LINK:
                         share_urls = f'{INDEX_URL}/{url_path}?a=view'
                         share_urls = short_url(share_urls)
-                        buttons.buildbutton("🌐 View Link", share_urls)
+                        buttons.buildbutton("View Link", share_urls)
                     if BOT_PM:	
                         bot_d = bot.get_me()	
                         b_uname = bot_d.username	
@@ -379,7 +379,7 @@ class MirrorListener:
                             title='ReflectionMirror Source Link',
                             content=mesg,
                         )["path"]
-                        buttons.buildbutton(f"🔗 Source Link", f"https://telegra.ph/{link}")
+                        buttons.buildbutton(f" Source Link", f"https://telegra.ph/{link}")
                     elif is_url(mesg):
                         source_link = mesg
                         if source_link.startswith(("|", "pswd: ")):
@@ -400,9 +400,9 @@ class MirrorListener:
                                 title='WeebZone Source Link',
                                 content=source_link,
                             )["path"]
-                            buttons.buildbutton(f"🔗 Source Link", f"https://telegra.ph/{link}")
+                            buttons.buildbutton(f"Source Link", f"https://telegra.ph/{link}")
                         else:
-                            buttons.buildbutton(f"🔗 Source Link", source_link)
+                            buttons.buildbutton(f"Source Link", source_link)
                 except Exception:
                     pass
             else:
