@@ -85,21 +85,23 @@ try:
 except:
     TORRENT_TIMEOUT = None
 
-PORT = environ.get('PORT')
-Popen(f"gunicorn web.wserver:app --bind 0.0.0.0:{PORT}", shell=True)
-srun(["last-api", "-d", "--profile=."])
+
+try:
+    SERVER_PORT = getConfig('SERVER_PORT')
+    if len(SERVER_PORT) == 0:
+        raise KeyError
+except:
+    SERVER_PORT = 80
+
+Popen(f"gunicorn web.wserver:app --bind 0.0.0.0:{SERVER_PORT}", shell=True)
+srun(["qbittorrent-nox", "-d", "--profile=."])
 if not ospath.exists('.netrc'):
     srun(["touch", ".netrc"])
+alive = Popen(["python3", "alive.py"])
 srun(["cp", ".netrc", "/root/.netrc"])
 srun(["chmod", "600", ".netrc"])
-trackers = check_output("curl -Ns https://raw.githubusercontent.com/XIU2/TrackersListCollection/master/all.txt https://ngosang.github.io/trackerslist/trackers_all_http.txt https://newtrackon.com/api/all https://raw.githubusercontent.com/hezhijie0327/Trackerslist/main/trackerslist_tracker.txt | awk '$0' | tr '\n\n' ','", shell=True).decode('utf-8').rstrip(',')
-if TORRENT_TIMEOUT is not None:
-    with open("a2c.conf", "a+") as a:
-        a.write(f"bt-stop-timeout={TORRENT_TIMEOUT}\n")
-with open("a2c.conf", "a+") as a:
-    a.write(f"bt-tracker=[{trackers}]")
-srun(["extra-api", "--conf-path=/usr/src/app/a2c.conf"])
-alive = Popen(["python3", "alive.py"])
+srun(["chmod", "+x", "aria.sh"])
+srun("./aria.sh", shell=True)
 sleep(0.5)
 
 Interval = []
@@ -610,19 +612,30 @@ try:
     BOT_PM = BOT_PM.lower() == 'true'	
 except KeyError:	
     BOT_PM = False
-https://github.com/Reflection-Mirror/Reflection-Mirror/blob/master/bot/__init__.py#:~:text=BOT_PM%20%3D%20False-,try%3A,AUTHOR_URL%20%3D%20%27https%3A//t.me/dipeshmirror%27,-try%3A
+try:
+    AUTHOR_NAME = getConfig('AUTHOR_NAME')
+    if len(AUTHOR_NAME) == 0:
+        AUTHOR_NAME = 'Dipesh'
+except KeyError:
+    AUTHOR_NAME = 'Dipesh'
+try:
+    AUTHOR_URL = getConfig('AUTHOR_URL')
+    if len(AUTHOR_URL) == 0:
+        AUTHOR_URL = 'https://t.me/dipeshmirror'
+except KeyError:
+    AUTHOR_URL = 'https://t.me/dipeshmirror'
 try:
     GD_INFO = getConfig('GD_INFO')
     if len(GD_INFO) == 0:
-        GD_INFO = 'Uploaded by Kratos Mirror Bot'
+        GD_INFO = 'Uploaded by Reflection Mirror Bot'
 except KeyError:
-    GD_INFO = 'Uploaded by Kratos Mirror Bot'
+    GD_INFO = 'Uploaded by Reflection Mirror Bot'
 try:
     TITLE_NAME = getConfig('TITLE_NAME')
     if len(TITLE_NAME) == 0:
-        TITLE_NAME = 'Kratos-Mirror-Search'
+        TITLE_NAME = 'Reflection-Mirror-Search'
 except KeyError:
-    TITLE_NAME = 'Kratos-Mirror-Search'
+    TITLE_NAME = 'Reflection-Mirror-Search'
 try:
     FINISHED_PROGRESS_STR = getConfig('FINISHED_PROGRESS_STR') 
     UN_FINISHED_PROGRESS_STR = getConfig('UN_FINISHED_PROGRESS_STR')
@@ -720,7 +733,7 @@ except:
 try:
     IMAGE_URL = getConfig('IMAGE_URL')
 except KeyError:
-    IMAGE_URL = 'https://scontent-sin6-4.xx.fbcdn.net/v/t1.6435-9/33964536_1635353863250625_8727610829530202112_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=e3f864&_nc_ohc=2CkXu3Xm9p0AX-E1s1j&_nc_ht=scontent-sin6-4.xx&oh=00_AT_DFQiJn_K1SmCjyc2bJbH-pzcXUOPUPHiUjJy3lRalvA&oe=631AA594'
+    IMAGE_URL = 'http://telegra.ph/REFLECTION-07-18'
 
 updater = tgUpdater(token=BOT_TOKEN, request_kwargs={'read_timeout': 20, 'connect_timeout': 15})
 bot = updater.bot
