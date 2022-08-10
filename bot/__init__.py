@@ -731,7 +731,7 @@ except:
 try:
     IMAGE_URL = getConfig('IMAGE_URL')
 except KeyError:
-    IMAGE_URL = 'http://telegra.ph/REFLECTION-07-18'
+    IMAGE_URL = 'https://scontent-sin6-4.xx.fbcdn.net/v/t1.6435-9/33964536_1635353863250625_8727610829530202112_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=e3f864&_nc_ohc=2CkXu3Xm9p0AX-E1s1j&_nc_ht=scontent-sin6-4.xx&oh=00_AT_DFQiJn_K1SmCjyc2bJbH-pzcXUOPUPHiUjJy3lRalvA&oe=631AA594'
 
 updater = tgUpdater(token=BOT_TOKEN, request_kwargs={'read_timeout': 20, 'connect_timeout': 15})
 bot = updater.bot
