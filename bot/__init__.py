@@ -610,18 +610,7 @@ try:
     BOT_PM = BOT_PM.lower() == 'true'	
 except KeyError:	
     BOT_PM = False
-try:
-    AUTHOR_NAME = getConfig('AUTHOR_NAME')
-    if len(AUTHOR_NAME) == 0:
-        AUTHOR_NAME = 'Themiya'
-except KeyError:
-    AUTHOR_NAME = 'Themiya'
-try:
-    AUTHOR_URL = getConfig('AUTHOR_URL')
-    if len(AUTHOR_URL) == 0:
-        AUTHOR_URL = 'PP'
-except KeyError:
-    AUTHOR_URL = 'r'
+https://github.com/Reflection-Mirror/Reflection-Mirror/blob/master/bot/__init__.py#:~:text=BOT_PM%20%3D%20False-,try%3A,AUTHOR_URL%20%3D%20%27https%3A//t.me/dipeshmirror%27,-try%3A
 try:
     GD_INFO = getConfig('GD_INFO')
     if len(GD_INFO) == 0:
